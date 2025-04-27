@@ -1,0 +1,46 @@
+#include<stdio.h>
+
+typedef struct amount{
+    int amount;
+    struct amount *Left;
+    struct amount *Right;
+
+}amount;
+
+amount *head = NULL;
+
+void insert(){
+    amount *tmp,*parent,*current;
+    tmp = (amount*)malloc(sizeof(amount));
+    printf("Enter Customer Amount: ");
+    scanf("%d",&tmp->amount);
+    tmp->Left = NULL;
+    tmp->Right = NULL;
+    
+    if(head == NULL)
+        head = tmp;
+    else{
+        parent=head;
+        current=head;
+        while(current !=NULL){
+            if(tmp->amount > current->amount)
+                current = current->Right;
+            else
+                current = current->Left;    
+        
+        }
+        if(tmp->amount > parent->amount)
+            parent->Right = tmp;
+        else
+            parent->Left = tmp;    
+    
+    }    
+
+}
+
+int main(){
+    insert();
+    insert();
+    insert();
+
+}
